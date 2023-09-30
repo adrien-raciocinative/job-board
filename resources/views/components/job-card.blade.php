@@ -13,7 +13,7 @@
             <x-tag>{{ Str::ucfirst($job->category) }}</x-tag>
         </div>
     </div>
-    <p class="text-slate-500 text-sm mb-4">{!! nl2br(e($job->description)) !!}</p>
+
     <div>
 
         {{ $slot }}
