@@ -12,7 +12,6 @@ class jobController extends Controller
      */
     public function index()
     {
-        $experiences = job::$experiences;
         $jobs = job::query();
 
         $jobs->when(request('search'), function ($query) {
@@ -25,9 +24,11 @@ class jobController extends Controller
                 $query->where('salary', '<=', request('max_salary'));
             })->when(request('experience'), function ($query) {
                 $query->where('experience', 'like',  request('experience'));
+            })->when(request('category'), function ($query) {
+                $query->where('category', 'like',  request('category'));
             });
         });
-        return view('job.index', ['jobs' => $jobs->get(), 'experiences' => $experiences]);
+        return view('job.index', ['jobs' => $jobs->get()]);
     }
 
     /**

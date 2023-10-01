@@ -19,15 +19,12 @@
                     </div>
                 </div>
                 <div>
-                    <div class="mb-1  font-semibold">Experince</div>
-                    <label for="experience" class="mb-1 space-x-2 flex items-center text-sm font-medium text-slate-500">
-                        <input type="radio" name="experience" value="" @checked(!request('experience'))/>
-                        <span>All</span>
-                        @foreach ($experiences as $experience)
-                            <input type="radio" name="experience" value="{{ $experience }}" @checked(request('experience') == $experience) />
-                            <span>{{ Str::ucfirst($experience) }}</span>
-                        @endforeach
-                    </label>
+                    <div class="mb-1 font-semibold">Experince</div>
+                    <x-radio-group  name="experience" :options="App\Models\job::$experiences" />
+                </div>
+                <div>
+                    <div class="mb-1 font-semibold">Category</div>
+                    <x-radio-group class="columns-2" name="category" :options="App\Models\job::$jobCategories" />
                 </div>
             </div>
             <input type="submit" value="Filter"
@@ -36,7 +33,7 @@
 
         <span
             class="my-4 flex w-fit rounded-md border border-slate-300 px-2.5 py-1.5 text-center text-sm font-semibold  text-black shadow-sm hover:bg-slate-100">Job
-            Count: <b class="ml-2">{{$jobs->count() }}</b></span>
+            Count: <b class="ml-2">{{ $jobs->count() }}</b></span>
     </x-card>
     @foreach ($jobs as $job)
         <x-job-card class="mb-4" :$job>
