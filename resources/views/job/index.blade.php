@@ -14,8 +14,8 @@
                 <div>
                     <div class="mb-1  font-semibold">Salary</div>
                     <div class="flex space-x-2">
-                        <x-text-input name="min_salary" value="{{ request('min_salary') }}" placeholder="From" />
-                        <x-text-input name="max_salary" value="{{ request('max_salary') }}" placeholder="To" />
+                        <x-text-input name="min_salary" value="{{ request('min_salary') }}" placeholder="From"   form-id="filtering-form"/>
+                        <x-text-input name="max_salary" value="{{ request('max_salary') }}" placeholder="To"  form-id="filtering-form" />
                     </div>
                 </div>
                 <div>
@@ -27,8 +27,7 @@
                     <x-radio-group class="columns-2" name="category" :options="App\Models\job::$jobCategories" />
                 </div>
             </div>
-            <input type="submit" value="Filter"
-                class="w-full rounded-md border border-slate-300 px-2.5 py-1.5 text-center text-sm font-semibold  text-black shadow-sm hover:bg-slate-100">
+            <x-button type="submit" class="w-full">Filter</x-button>
         </form>
 
         <span
