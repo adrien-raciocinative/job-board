@@ -16,7 +16,8 @@ class job extends Model
         'IT', 'Finance', 'Marketing', 'Sales', 'Design', 'Engineering', 'Legal', 'Accounting', 'Other'
     ];
 
-    public function employer():BelongsTo {
+    public function employer(): BelongsTo
+    {
         return $this->belongsTo(Employer::class);
     }
 
@@ -25,7 +26,10 @@ class job extends Model
         return $query->when($filters['search'] ?? null, function ($query, $search) {
             $query->where(function ($query) use ($search) {
                 $query->where('title', 'like', '%' . $search  . '%')
-                    ->orWhere('description', 'like', '%' . $search . '%');
+                    ->orWhere('description', 'like', '%' . $search . '%')
+                    ->orWhereHas('employer', function ($query) use ($search) {
+                        $query->where('company_name', 'like', '%' . $search . '%');
+                    });
             });
         })->when($filters['min_salary'] ?? null, function ($query, $minSalary) {
             $query->where('salary', '>=', $minSalary);
