@@ -39,7 +39,8 @@ class DatabaseSeeder extends Seeder
             foreach ($jobs as $job) {
                 JobApplication::factory()->create([
                     'job_id' => $job->id,
-                    'user_id' => $user->id
+                    'user_id' => $user->id,
+                    
                 ]);
             }
         }

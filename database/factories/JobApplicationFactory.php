@@ -17,7 +17,12 @@ class JobApplicationFactory extends Factory
     public function definition(): array
     {
         return [
-            'expected_salary' => fake()->numberBetween(4_000, 170_000)
+            'Full_Name' => fake()->name(),
+            'expected_salary' => fake()->numberBetween(4_000, 170_000),
+            'Years_of_Experience' => fake()->numberBetween(0, 30),
+            'Email_address' => fake()->unique()->safeEmail(),
+            'Phone_number' => fake()->phoneNumber(),
+            'Resume' => fake()->url(),
         ];
     }
 }
