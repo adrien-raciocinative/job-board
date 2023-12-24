@@ -13,6 +13,7 @@ class jobApplicationController extends Controller
      */
     public function create(job $job)
     {
+        $this->authorize('apply', $job);
         return view('job_application.create', ['job' => $job]);
     }
 

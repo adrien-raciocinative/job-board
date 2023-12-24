@@ -5,6 +5,8 @@
     ]" />
     <x-job-card :$job>
         <p class="text-slate-500 text-sm mb-4">{!! nl2br(e($job->description)) !!}</p>
+
+        <x-link-button :href="route('jobs.application.create', $job)">Apply</x-link-button>
     </x-job-card>
 
     <x-card class="mb-4">
