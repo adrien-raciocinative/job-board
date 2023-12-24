@@ -9,11 +9,11 @@
         <h2 class="mb-4 text-xl font-medium">
             Your Job Application
         </h2>
-        <form action="{{ route('job.application.store', $job) }}">
+        <form action="{{ route('jobs.application.store', $job) }}" method="POST">
             @csrf
             <div class="mb-4">
                 <label for="Full_name" class="mb-2 block text-x font-medium text-slate-900">Full Name</label>
-                <x-text-input type="text" name="Full_name" value="{{ @auth()->user()->name }}" />
+                <x-text-input type="text" name="Full_name" placeholder="{{ @auth()->user()->name }}"  />
             </div>
             <div class="mb-4">
                 <label for="expected_salary" class="mb-2 block text-x font-medium text-slate-900">Expected

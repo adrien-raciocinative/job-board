@@ -17,12 +17,12 @@ return new class extends Migration
             $table->id();
             $table->foreignIdFor(User::class)->constrained();
             $table->foreignIdFor(job::class)->constrained();
-            $table->string('Full_Name');
+            $table->string('Full_Name')->nullable();
             $table->unsignedInteger('expected_salary');
             $table->unsignedInteger('Years_of_Experience');
             $table->string('Email_address');
             $table->string('Phone_number');
-            $table->string('Resume');
+            $table->string('Resume')->nullable();
             $table->timestamps();
         });
     }
