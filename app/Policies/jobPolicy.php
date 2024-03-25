@@ -13,13 +13,13 @@ class jobPolicy
      */
     public function viewAny(?User $user): bool
     {
-      return true;
+        return true;
     }
 
     /**
      * Determine whether the user can view the model.
      */
-    public function view(User $user, Job $job): bool
+    public function view(?User $user, Job $job): bool
     {
         return true;
     }
@@ -64,7 +64,8 @@ class jobPolicy
         return false;
     }
 
-    public function apply(User $user, Job $job): bool {
-        return false;
+    public function apply(User $user, Job $job): bool
+    {
+        return !$job->hasUserApplied($user);
     }
 }

@@ -27,7 +27,7 @@ class jobApplicationController extends Controller
             'Full_Name' => $request->user()->name,
             ...$request->validate([
                 'expected_salary' => 'required|min:1|max:1000000',
-                'Years_of_Experience' => 'required|min:2',
+                'Years_of_Experience' => 'required|min:0',
                 'Email_address' => 'required|email',
                 'Phone_number' => 'required',
                 'Resume' => 'nullable',

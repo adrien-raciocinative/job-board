@@ -5,8 +5,11 @@
     ]" />
     <x-job-card :$job>
         <p class="text-slate-500 text-sm mb-4">{!! nl2br(e($job->description)) !!}</p>
-
-        <x-link-button :href="route('jobs.application.create', $job)">Apply</x-link-button>
+        @can('apply', $job)
+            <x-link-button :href="route('jobs.application.create', $job)">Apply</x-link-button>
+        @else
+            <div class="text-center text-sm font-medium text-red-500">You have already applied to this job</div>
+        @endcan
     </x-job-card>
 
     <x-card class="mb-4">
@@ -18,7 +21,8 @@
                 <div class="mb-4 flex justify-between">
                     <div>
                         <div><a href="{{ route('jobs.show', $otherjob) }}">{{ $otherjob->title }}</a></div>
-                        <div class="text-xs">{{ $otherjob->created_at->diffForHumans() }} at {{ $otherjob->location }}</div>
+                        <div class="text-xs">{{ $otherjob->created_at->diffForHumans() }} at {{ $otherjob->location }}
+                        </div>
                     </div>
                     <div class="">
                         ${{ number_format($otherjob->salary) }}
