@@ -9,7 +9,7 @@
         <h2 class="mb-4 text-xl font-medium">
             Your Job Application
         </h2>
-        <form action="{{ route('jobs.application.store', $job) }}" method="POST">
+        <form action="{{ route('jobs.application.store', $job) }}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="mb-4">
                 <label for="Full_name" class="mb-2 block text-x font-medium text-slate-900">Full Name</label>
@@ -34,8 +34,13 @@
                 <x-text-input type="phone" name="Phone_number" value="{{ old('Phone_number') }}" />
             </div>
             <div class="mb-4">
-                <label for="Resume" class="mb-2 block text-x font-medium text-slate-900">Resume link</label>
+                <label for="Resume" class="mb-2 block text-x font-medium text-slate-900">Resume link / Your website
+                    link</label>
                 <x-text-input type="url" name="Resume" value="{{ old('Resume') }}" />
+            </div>
+            <div class="mb-4">
+                <label for="Resume" class="mb-2 block text-x font-medium text-slate-900">Uplaod your CV</label>
+                <x-text-input type="file" name="cv" />
             </div>
             <x-button class="w-full mt-4">Apply</x-button>
         </form>
