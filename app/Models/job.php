@@ -14,6 +14,10 @@ use Illuminate\Support\Facades\Auth;
 class job extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'title', 'location', 'salary', 'description', 'category'
+    ];
     public static array $experiences = ['entry', 'intermediate', 'senior'];
     public static array $jobCategories = [
         'IT', 'Finance', 'Marketing', 'Sales', 'Design', 'Engineering', 'Legal', 'Accounting', 'Other'

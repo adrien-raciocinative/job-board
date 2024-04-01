@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\job;
 use Illuminate\Http\Request;
 
 class MyJobConroller extends Controller
@@ -28,7 +29,20 @@ class MyJobConroller extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate(
+            [
+                'title' => 'required|string|max:255',
+                'location' => 'required|string|max:255',
+                'salary' => 'required|numeric|min:5000',
+                'description' => 'required|string',
+                'experience' => 'required|in:' . implode(',', job::$experiences),
+                'category' => 'required|in:' . implode(',', job::$jobCategories),
+            ]
+        );
+
+        auth()->user()->employer->jobs()->create($validatedData);
+
+        return redirect()->route('my-jobs.index')->with('success', 'Job was  added successfully!');
     }
 
     /**
