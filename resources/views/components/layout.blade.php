@@ -15,14 +15,19 @@
         </ul>
         <ul class="flex space-x-4 items-center">
             @auth
-                <a href="{{ route('my-job-applications.index') }}">
-                    {{ auth()->user()->name ?? 'anonymous' }}: Applications
-                </a>
-                <form action="{{ route('auth.destroy') }}" method="POST">
-                    @csrf
-                    @method('DELETE')
-                    <x-button class="text-slate-50 hover:text-slate-950" type="submit">Logout</x-button>
-                </form>
+                <li>
+                    <a href="{{ route('my-job-applications.index') }}">
+                        {{ auth()->user()->name ?? 'anonymous' }}: Applications
+                    </a>
+                </li>
+                <li><a href="{{ route('my-jobs.index') }}">My Jobs</a></li>
+                <li>
+                    <form action="{{ route('auth.destroy') }}" method="POST">
+                        @csrf
+                        @method('DELETE')
+                        <x-button class="text-slate-50 hover:text-slate-950" type="submit">Logout</x-button>
+                    </form>
+                </li>
             @else
                 <li><a href="{{ route('auth.create') }}">login</a></li>
             @endauth
