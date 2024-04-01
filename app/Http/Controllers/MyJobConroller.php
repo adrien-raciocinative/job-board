@@ -11,6 +11,7 @@ class MyJobConroller extends Controller
      */
     public function index()
     {
+
         return view('my_job.index');
     }
 
@@ -19,7 +20,7 @@ class MyJobConroller extends Controller
      */
     public function create()
     {
-        //
+        return view('my_job.create');
     }
 
     /**
