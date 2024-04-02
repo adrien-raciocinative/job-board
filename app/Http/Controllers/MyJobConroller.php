@@ -13,7 +13,9 @@ class MyJobConroller extends Controller
     public function index()
     {
 
-        return view('my_job.index');
+        return view('my_job.index', [
+            'jobs' => auth()->user()->employer->jobs()->with('employer', 'jobApplications', 'jobapplications.user')->get()
+        ]);
     }
 
     /**
