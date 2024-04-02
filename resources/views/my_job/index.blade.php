@@ -11,7 +11,7 @@
                     <div class="mb-4 flex items-center justify-between">
                         <div>
                             <div>{{ $application->user->name }}</div>
-                            <div>Applied {{ $application->created_at->diffForHumans() }}</div>
+                            <div>Applied: {{ $application->created_at->diffForHumans() }}</div>
                             <div>Email: <a class="underline text-blue-700"
                                     href="mailto:{{ $application->Email_address }}">{{ $application->Email_address }}</a>
                             </div>
@@ -28,6 +28,9 @@
                 @empty
                     No applications yet.
                 @endforelse
+                <div class="flex space-x-2">
+                    <x-link-button href="{{ route('my-jobs.edit', $job) }}">Edit</x-link-button>
+                </div>
             </div>
         </x-job-card>
     @empty
