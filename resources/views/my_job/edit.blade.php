@@ -23,7 +23,11 @@
                 </div>
                 <div>
                     <x-label for="experience" :required="true">Experience</x-label>
-                    <x-radio-group name="experience" :value="$job->experience" :options="App\Models\job::$experiences" :allOption="false" />
+                    {{-- <x-radio-group name="experience" :value="$job->experience" :options="App\Models\job::$experiences" :allOption="false" /> --}}
+                    <x-radio-group name="experience" :value="$job->experience" :all-option="false" :options="array_combine(
+                        array_map('ucfirst', \App\Models\Job::$experiences),
+                        \App\Models\Job::$experiences,
+                    )" />
                 </div>
 
                 <div>
