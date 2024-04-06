@@ -1,7 +1,8 @@
 <x-layout>
     <x-breadcrumbs :links="['My Jobs' => '#']" class="mb-4" />
     <div class="mb-8 text-right text-slate-50 capitalize">
-        <x-link-button href="{{ route('my-jobs.create') }}" class="text-slate-50">Add new job</x-link-button>
+        <x-link-button href="{{ route('my-jobs.create') }}" class="text-slate-50 hover:text-slate-950">Add new
+            job</x-link-button>
     </div>
 
     @forelse ($jobs as $job )

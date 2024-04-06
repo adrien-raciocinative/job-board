@@ -57,11 +57,6 @@
         </div>
     @endif
 
-
-
-
-
-
     {{ $slot }}
 
 </body>

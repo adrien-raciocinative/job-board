@@ -13,6 +13,7 @@ class MyJobController extends Controller
      */
     public function index()
     {
+        $this->authorize('viewAnyEmployer', Job::class);
 
         return view('my_job.index', [
             'jobs' => auth()->user()->employer->jobs()->with('employer', 'jobApplications', 'jobapplications.user')->get()
@@ -24,6 +25,7 @@ class MyJobController extends Controller
      */
     public function create()
     {
+        $this->authorize('create', job::class);
         return view('my_job.create');
     }
 
@@ -33,7 +35,7 @@ class MyJobController extends Controller
     public function store(jobRequest $request)
     {
 
-
+        $this->authorize('create', job::class);
         auth()->user()->employer->jobs()->create($request->validated());
 
         return redirect()->route('my-jobs.index')->with('success', 'Job was  added successfully!');
@@ -44,7 +46,7 @@ class MyJobController extends Controller
      */
     public function edit(job $myJob)
     {
-        // $this->authorize('update', $myJob);
+        $this->authorize('update', $myJob);
         return view('my_job.edit', ['job' => $myJob]);
     }
 
@@ -53,6 +55,7 @@ class MyJobController extends Controller
      */
     public function update(jobRequest $request, Job $myJob)
     {
+        $this->authorize('update', $myJob);
         $myJob->update($request->validated());
         // dd($myjob) ;
         return redirect()->route('my-jobs.index')->with('success', 'Job was updated succesfully');
