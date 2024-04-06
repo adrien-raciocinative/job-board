@@ -15,7 +15,7 @@ class MyJobApplicationController extends Controller
     public function index()
     {
         return view('my_job_application.index', [
-            'applications' => auth()->user()->JobApplications()->with(['job' => fn ($query) => $query->withCount('JobApplications')->withAvg('JobApplications', 'expected_salary'), 'job.employer'])->latest()->get()
+            'applications' => auth()->user()->JobApplications()->with(['job' => fn ($query) => $query->withCount('JobApplications')->withAvg('JobApplications', 'expected_salary')->withTrashed(), 'job.employer'])->latest()->get()
         ]);
     }
 
