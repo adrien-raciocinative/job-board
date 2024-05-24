@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\job;
+use App\Models\Job;
 use Illuminate\Http\Request;
 
 class jobApplicationController extends Controller
@@ -11,7 +11,7 @@ class jobApplicationController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create(job $job)
+    public function create(Job $job)
     {
         $this->authorize('apply', $job);
         return view('job_application.create', ['job' => $job]);
@@ -20,7 +20,7 @@ class jobApplicationController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(job $job, Request $request)
+    public function store(Job $job, Request $request)
     {
         $this->authorize('apply', $job);
         $validatedData = $request->validate([

@@ -2,7 +2,7 @@
 
 namespace App\Http\Requests;
 
-use App\Models\job;
+use App\Models\Job;
 use Illuminate\Foundation\Http\FormRequest;
 
 class jobRequest extends FormRequest
@@ -27,8 +27,8 @@ class jobRequest extends FormRequest
             'location' => 'required|string|max:255',
             'salary' => 'required|numeric|min:5000',
             'description' => 'required|string',
-            'experience' => 'required|in:' . implode(',', job::$experiences),
-            'category' => 'required|in:' . implode(',', job::$jobCategories)
+            'experience' => 'required|in:' . implode(',', Job::$experiences),
+            'category' => 'required|in:' . implode(',', Job::$jobCategories)
         ];
     }
 }

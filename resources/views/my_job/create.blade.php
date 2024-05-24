@@ -6,7 +6,7 @@
             <div class="mb-4 grid grid-cols-2 gap-4">
                 <div>
                     <x-label for="title" :required="true">Job Title</x-label>
-                    <x-text-input name="title" />
+                    <x-text-input :value="old('category')" name="title" />
                 </div>
                 <div>
                     <x-label for="location" :required="true">Job Location</x-label>
@@ -22,12 +22,12 @@
                 </div>
                 <div>
                     <x-label for="experience" :required="true">Experience</x-label>
-                    <x-radio-group name="experience" :value="old('experience')" :options="App\Models\job::$experiences" :allOption="false" />
+                    <x-radio-group name="experience" :value="old('experience')" :options="App\Models\Job::$experiences" :allOption="false" />
                 </div>
 
                 <div>
                     <x-label for="category" :required="true">category</x-label>
-                    <x-radio-group name="category" :value="old('category')" :options="App\Models\job::$jobCategories" :allOption="false" />
+                    <x-radio-group name="category" :value="old('category')" :options="App\Models\Job::$jobCategories" :allOption="false" />
                 </div>
                 <div class="col-span-2">
                     <x-button class="w-full col-span-2">Create Job</x-button>

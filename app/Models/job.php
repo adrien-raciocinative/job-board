@@ -12,7 +12,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Query\Builder as QueryBuilder;
 use Illuminate\Support\Facades\Auth;
 
-class job extends Model
+class Job extends Model
 {
     use HasFactory, SoftDeletes;
 

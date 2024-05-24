@@ -2,11 +2,11 @@
 
 namespace Database\Factories;
 
-use App\Models\job;
+use App\Models\Job;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\job>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Job>
  */
 class JobFactory extends Factory
 {
@@ -22,8 +22,8 @@ class JobFactory extends Factory
             'description' => fake()->paragraphs(3, true),
             'salary' => fake()->numberBetween(5_000, 150_000),
             'location' => fake()->city(),
-            'category' => fake()->randomElement(job::$jobCategories),
-            'experience' => fake()->randomElement(job::$experiences)
+            'category' => fake()->randomElement(Job::$jobCategories),
+            'experience' => fake()->randomElement(Job::$experiences)
         ];
     }
 }

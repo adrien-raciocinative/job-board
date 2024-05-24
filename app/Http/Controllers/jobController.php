@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\job;
+use App\Models\Job;
 use Illuminate\Http\Request;
 
 class jobController extends Controller
@@ -15,13 +15,13 @@ class jobController extends Controller
         $this->authorize('viewAny', Job::class); // Policy Class 
         $filters = request()->only('search', 'min_salary', 'max_salary', 'experience', 'category');
 
-        return view('job.index', ['jobs' => job::with('employer')->latest()->filter($filters)->get()]);
+        return view('job.index', ['jobs' => Job::with('employer')->latest()->filter($filters)->get()]);
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(job $job)
+    public function show(Job $job)
     {
         //We use this compact as we only have one variable to poss to the view
         $this->authorize('view', $job);
