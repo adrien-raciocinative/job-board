@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\job;
+use App\Models\Job;
 use Illuminate\Http\Request;
 
 class jobApplicationController extends Controller
@@ -11,7 +11,7 @@ class jobApplicationController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create(job $job)
+    public function create(Job $job)
     {
         $this->authorize('apply', $job);
         return view('job_application.create', ['job' => $job]);
@@ -20,9 +20,13 @@ class jobApplicationController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(job $job, Request $request)
+    public function store(Job $job, Request $request)
     {
         $this->authorize('apply', $job);
+        $jobLink = route('jobs.show', $job);
+        $jobTitle = $job->title;
+        $userApplications = route('my-job-applications.index');
+
         $validatedData = $request->validate([
             'expected_salary' => 'required|min:1|max:1000000',
             'Years_of_Experience' => 'required|min:0',
@@ -55,6 +59,9 @@ class jobApplicationController extends Controller
             'cv'      => $path,
 
         ]);
+
+        $emailController =new EmailController();
+        $emailController->SendJobApplicationEmail($jobLink, $jobTitle, $userApplications);
 
         return redirect()->route('jobs.show', $job)->with('success', 'job application submitted');
     }

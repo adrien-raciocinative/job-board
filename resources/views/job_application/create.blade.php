@@ -13,7 +13,7 @@
             @csrf
             <div class="mb-4">
                 <x-label for="Full_name" :required="true">Full_name</x-label>
-                <x-text-input type="text" name="Full_name" value="{{ @auth()->user()->name }}" />
+                <x-text-input type="text" name="Full_name" value="{{ auth()->user()->name }}" />
             </div>
             <div class="mb-4">
                 <x-label for="expected_salary" :required="true">salary</x-label>
@@ -25,7 +25,7 @@
             </div>
             <div class="mb-4">
                 <x-label for="Email_address" :required="true">Email Address</x-label>
-                <x-text-input type="email" name="Email_address" value="{{ @auth()->user()->email }}" />
+                <x-text-input type="email" name="Email_address" value="{{ auth()->user()->email }}" />
             </div>
             <div class="mb-4">
                 <x-label for="Phone_number" :required="true">Phone Number</x-label>

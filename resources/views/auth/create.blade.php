@@ -6,12 +6,12 @@
 
             <div class="mb-8">
                 <x-label for="email" :required="true">E-mail</x-label>
-                <x-text-input name="email" type="email" />
+                <x-text-input name="email" type="email" :value="old('email')" />
             </div>
 
             <div class="mb-8">
                 <x-label for="password" :required="true">Password</x-label>
-                <x-text-input name="password" type="password" />
+                <x-text-input name="password" type="password" :value="old('password')" />
             </div>
 
             <div class="mb-8 flex justify-between">

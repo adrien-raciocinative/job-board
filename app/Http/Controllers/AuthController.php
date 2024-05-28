@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Notifications\NewLogin;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\EmailController;
+use App\Mail\WelcomeMail;
 
 class AuthController extends Controller
 {
@@ -30,7 +33,15 @@ class AuthController extends Controller
         $remember = $request->filled('remember');
 
         if (Auth::attempt($credentials, $remember)) {
-            return redirect()->intended('/');
+
+            $emailController = new EmailController();
+            $emailController->SendWelcomeEmail();
+
+            $user = auth()->user();
+            $userName = $user->name;
+            // $message = "my test message";
+            // $user->notify(new NewLogin($userName));
+            return redirect()->intended('/')->with('error', 'Welcome back ' . $userName . '😃');
         } else {
             return redirect()->back()->with('error', 'invalid credentials');
         }

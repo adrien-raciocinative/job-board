@@ -1,11 +1,14 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\EmailController;
 use App\Http\Controllers\EmployerController;
 use App\Http\Controllers\jobApplicationController;
 use App\Http\Controllers\jobController;
 use App\Http\Controllers\MyJobApplicationController;
 use App\Http\Controllers\MyJobController;
+use App\Models\User;
+use App\Notifications\NewLogin;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -36,3 +39,13 @@ Route::middleware('auth')->group(function () {
 
     Route::middleware('employer')->resource('my-jobs', MyJobController::class);
 });
+
+
+Route::get('/test-email', function() {
+    $user = User::find(1);
+    $userName = $user->name;
+    $user->notify(new NewLogin($userName));
+    dd('test email');
+});
+
+Route::get('send-mail', [EmailController::class, 'SendWelcomeEmail']);
