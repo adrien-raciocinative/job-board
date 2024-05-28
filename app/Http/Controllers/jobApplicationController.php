@@ -23,6 +23,10 @@ class jobApplicationController extends Controller
     public function store(Job $job, Request $request)
     {
         $this->authorize('apply', $job);
+        $jobLink = route('jobs.show', $job);
+        $jobTitle = $job->title;
+        $userApplications = route('my-job-applications.index');
+
         $validatedData = $request->validate([
             'expected_salary' => 'required|min:1|max:1000000',
             'Years_of_Experience' => 'required|min:0',
@@ -55,6 +59,9 @@ class jobApplicationController extends Controller
             'cv'      => $path,
 
         ]);
+
+        $emailController =new EmailController();
+        $emailController->SendJobApplicationEmail($jobLink, $jobTitle, $userApplications);
 
         return redirect()->route('jobs.show', $job)->with('success', 'job application submitted');
     }
