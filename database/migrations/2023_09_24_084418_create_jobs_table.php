@@ -1,6 +1,6 @@
 <?php
 
-use App\Models\job;
+use App\Models\Job;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -19,7 +19,7 @@ return new class extends Migration
             $table->unsignedBigInteger('salary');
             $table->string('location');
             $table->string('category');
-            $table->enum('experience', job::$experiences);
+            $table->enum('experience', Job::$experiences);
             $table->timestamps();
         });
     }

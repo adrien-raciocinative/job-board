@@ -25,7 +25,7 @@ class MyJobController extends Controller
      */
     public function create()
     {
-        $this->authorize('create', job::class);
+        $this->authorize('create', Job::class);
         return view('my_job.create');
     }
 
@@ -35,7 +35,7 @@ class MyJobController extends Controller
     public function store(jobRequest $request)
     {
 
-        $this->authorize('create', job::class);
+        $this->authorize('create', Job::class);
         auth()->user()->employer->jobs()->create($request->validated());
 
         return redirect()->route('my-jobs.index')->with('success', 'Job was  added successfully!');
@@ -44,7 +44,7 @@ class MyJobController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(job $myJob)
+    public function edit(Job $myJob)
     {
         $this->authorize('update', $myJob);
         return view('my_job.edit', ['job' => $myJob]);
@@ -64,7 +64,7 @@ class MyJobController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(job $myJob)
+    public function destroy(Job $myJob)
     {
         $myJob->delete();
 

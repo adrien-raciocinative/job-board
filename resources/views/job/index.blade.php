@@ -20,11 +20,11 @@
                 </div>
                 <div>
                     <div class="mb-1 font-semibold">Experince</div>
-                    <x-radio-group  name="experience" :options="App\Models\job::$experiences" />
+                    <x-radio-group  name="experience" :options="App\Models\Job::$experiences" />
                 </div>
                 <div>
                     <div class="mb-1 font-semibold">Category</div>
-                    <x-radio-group class="columns-2" name="category" :options="App\Models\job::$jobCategories" />
+                    <x-radio-group class="columns-2" name="category" :options="App\Models\Job::$jobCategories" />
                 </div>
             </div>
             <x-button type="submit" class="w-full">Filter</x-button>

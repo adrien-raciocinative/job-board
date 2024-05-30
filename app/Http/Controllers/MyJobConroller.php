@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\job;
+use App\Models\Job;
 use App\Http\Requests\jobRequest;
 use Illuminate\Http\Request;
 
